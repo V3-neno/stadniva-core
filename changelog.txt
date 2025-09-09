@@ -1,0 +1,24 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+## [1.0.0] - 2024-06-24
+### Added
+- Initial release of the plugin.
+
+## [1.0.1] - 2024-08-19
+### Added
+- Price ranges for the services.
+
+## [1.0.2] - 2024-09-12
+### Added
+- Integrated contact form 7 instead of a booking plugin.
+
+## [1.0.3] - 2024-11-05
+### Fixes
+- Minor bug fixes.
+### Added
+- Added a feature to add prices on the basis of ROK.
+- Added a feature to add prices on the basis of hour.

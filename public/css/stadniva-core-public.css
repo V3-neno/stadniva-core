@@ -1,0 +1,474 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+ .stnd-booking-details{
+    display: none;
+ }
+.stdn-flytthjalp-more{
+    display: none;
+}
+[type="submit"]{
+	width: 100% !important;
+	    padding: 1.2rem 1rem !important;
+}
+.stdn-estimation-heading{
+	display: flex;
+	flex-direction: column;
+	
+	border-radius: 8px;
+}
+.stdn-input-text{
+	background: none !important;
+	padding: 0px !important;
+}
+.stdn-input-text input{
+	border: none !important;
+	border-radius: 8px !important;
+	    padding: 1.2rem 1rem !important;
+	
+}
+
+.required-error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+	padding: .6rem 1rem !important;
+}
+
+.required-error::placeholder {
+    color: red;
+}
+
+.stdn-postal-code-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.stadn-booking-parent{
+	flex-basis: 40% !important;
+	background: none !important;
+	padding: 0px !important;
+}
+.stdn-booking-cost-wrapper{
+	position: sticky;
+	top: 124px;
+}
+.stdn-booking-form-wrapper{
+	display: flex;
+   flex-direction: row;
+	gap: 30px;
+    
+}
+.stdn-question-title{
+	margin-bottom: 0px;
+	font-weight: 600;
+}
+.stdn-booking-data{
+	
+	display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.stdn-booking-data-wrapper{
+	    background: none !important;
+}
+.stdn-booking-data-wrapper .btn-secondary{
+	width: 100% !important;
+	    padding: 1.2rem 1rem !important;
+}
+.stdn-booking-form-wrapper .stdn-booking-data .stdn-cont-booking{
+	width: 30%;
+	margin: 0 auto;
+	background-color: #0C316E;
+    color: #fff;
+    border: none;
+	border-radius: 8px !important;
+	padding: 1.2rem 1rem !important;
+}
+.stdn-postal-code-entry {
+    margin-bottom: 20px;
+}
+.stdn-estimation-heading{
+	position: sticky;
+	top: 20px;
+	background-color: #0c316e;
+    padding: 30px 25px;
+	    color: #fff;
+}
+.stdn-postal-code {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.stdn-postal-code-success {
+    margin-top: 10px;
+    font-size: 14px;
+    color: green;
+}
+ .stdn-service-name label{
+margin-bottom: 15px !important;
+	font-weight: 600 !important;
+	     margin-top: 10px;
+}
+.stdn-postal-code-result {
+    display: none;
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+	padding: 5px;
+    border: 1px solid #eeeeee;
+    background-color: #ffd8d5;
+    border-radius: 3px;
+   margin: 15px 0px;
+    position: relative;
+	text-align: center;
+
+}
+.wpbc_booking_form_simple {
+	    background-color: #fff;
+	 border-radius: 8px;
+	    padding: 25px;
+}
+.wpbc_container_booking_form p{
+	width: 100% !important;
+}
+.stdn-back-calendar{
+	    background-color: #d7d7d7 !important;
+    border: none !important;
+	outline: none !important;
+	margin-bottom: 13px !important;
+}
+.stdn-back-calendar:hover{
+	background-color: none;
+	color: #000 !important;
+}
+.wpbc__form__div{
+	max-width: 100% !important;
+}
+.wpbc__field label{
+	font-size: 16px;
+    margin-bottom: 14px !important;
+}
+.wpbc_button_light{
+	
+	width: 100% !important;
+	background-color: #0C316E !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 1.2rem 1rem !important;
+}
+.wpbc_container.wpbc_container_booking_form input[type="text"]{
+	padding: .5rem 1rem !important;
+	line-height: 1.5rem !important;
+	border-radius:8px !important;
+}
+.wpbc_button_light:focus{
+		box-shadow: none !important;
+	border: none !important;
+	outline: none: !important;
+}
+[type=checkbox], [type=radio] {
+    box-sizing: border-box;
+    padding: 0;
+    accent-color: #0c316e !important;
+}
+.booking_form input[type="text"]:focus{
+		box-shadow: none !important;
+	    border-color: #666 !important;
+	
+}
+.wpbc_button_light:hover{
+	box-shadow: none !important;
+	border: none !important;
+	outline: none: !important;
+}
+}
+.form-check input[type=radio], .form-check input[type=checkbox] {
+	accent-color: #0c316e;
+	
+}
+
+.stdn-service-btn {
+    text-align: center;
+}
+
+.stdn-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.stdn-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.stdn-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+.wpbc_times_selector div{
+	    color: #0c316e !important;
+    border: 1px solid #0c316e !important;
+}
+.wpbc_times_selector div.wpbc_time_selected{
+	background: #0c316e !important;
+	border: 1px solid #0c316e !important;
+}
+.stdn-booking-calander {
+    display: none;
+}
+.elementor-element-1596ea3  .form-check-label, .additional-fields label{
+	width: 98%;
+}
+.form-check-label, .additional-fields label{
+	line-height: 26px;
+	font-weight: 500;
+}
+.move_to_form{
+	display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.move_to_form button{
+	width: 100%;
+	background-color: #0C316E;
+	border-radius: 8px;
+	color: #fff;
+	border: none;
+}
+.move_to_form button:hover{
+		background-color: #0C316E;
+}
+
+
+.stdn-booking-calander form label  {
+	
+	    border: none !important;
+    border-radius: 8px !important;
+    width: 100%;
+	margin-bottom: 0px !important;
+    font-weight: 600 !important;
+	color: #0c316e !important;
+}
+.stdn-booking-calander form input, .stdn-booking-calander form select, .stdn-booking-calander form textarea {
+	    border: none !important;
+    border-radius: 8px !important;
+    width: 100%;
+	margin-top: 15px;
+	    padding: 1.1rem 1rem;
+}
+.stdn-booking-calander form select{
+	   appearance: none !important;
+    background: url(http://stadniva.roi.se/wp-content/uploads/2024/07/angle-down-solid.svg);
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-position-x: 97%;
+    background-size: 14px;
+    background-position-y: 23px;
+}
+.stdn-booking-calander form .wpcf7-submit{
+	    margin: 0 auto;
+    background-color: #0C316E;
+    color: #fff;
+    border: none;
+    border-radius: 8px !important;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* Counter */
+.form-group {
+    border: 1px solid #e0e0e0;
+    padding: 25px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+	background-color: #fff;
+	border-radius: 8px;
+}
+
+.counter {
+    display: flex;
+    align-items: center;
+}
+.cleaning-form label{
+margin-bottom: 20px !important;	
+	font-weight: 600;
+}
+.counter button {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+	border: none !important;
+	color: #0c316e !important;
+}
+.counter button:hover{
+	background-color: transparent !important;
+
+}
+.counter button:focus{
+	background-color: transparent !important;
+
+}
+.counter .quantity {
+    width: 40px;
+	height: 30px !important;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+}
+.additional-fields{
+	    margin-top: 16px;
+	display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.additional-fields>div{
+	display: flex;
+	gap: 50px;
+}
+.additional-fields .stdn-counter-input{
+	    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.sides label {
+    display: block;
+    margin-top: 10px;
+}
+
+.sides div {
+    display: flex;
+    align-items: center;
+}
+#cleaning-form .form-group .counter button{
+	    display: flex !important;
+    align-items: center;
+    justify-content: center;
+	border: none !important:
+	
+}
+#cleaning-form .form-group .counter button:hover{
+	background-color: none;
+}
+.form-group{
+	border: 0px !important;
+}
+
+.stdn-cont-booking:focus{
+	    background-color: #0c316e !important;
+}
+.counter input[type=text]{
+	padding: 0px !important;
+}
+.counter input[type=text]:focus {
+    outline: 0px;
+	border-color: #ccc;
+}
+.stdn-moving-explaination input{
+	border: none !important;
+	border-radius: 8px !important;
+}
+ [type="submit"]{
+	width: 100% !Imprtant;
+}
+.elementor-element-1596ea3 .stdn-booking-data .form-check{
+    display: flex;
+       align-items: center;
+    gap: 6px;
+	margin-bottom: 15px;
+	    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.stdn-booking-data .form-check input{
+	    height: 22px;
+    width: 22px;
+}
+.form-group .form-check{
+	border-bottom: 1px solid #cccccc;
+    padding-bottom: 20px;
+	margin-bottom: 20px
+}
+.form-check:last-child{
+	border-bottom: none;
+	margin-bottom: 0px !important;
+	 padding-bottom: 0px;
+}
+.sides input[type="radio"] {
+    margin-right: 5px;
+}
+
+
+@media screen and (max-width: 991px){
+	
+	.move_to_form button {
+    width: 22%;
+   
+}
+}
+@media screen and (max-width: 767px){
+	
+	.move_to_form button {
+    width: 100%;
+   
+}
+	.stdn-booking-form-wrapper input[type="text"]{
+		    padding: .2rem 1rem;
+	}
+	.stdn-ajax-response{
+		    font-size: 12px;
+	}
+}
