@@ -82,6 +82,10 @@
 		//calculate totals
 		$('.stdn_living_space').on('input', calculateTotalPrice);
 		$('input[type="radio"]').on('change', calculateTotalPrice);
+		$('select[name="select-kpt"], select[name="select-freq"]').on('change', calculateTotalPrice);
+		$('input[name="number-kvm-f"]').on('input change', calculateTotalPrice);
+		$('input[name="number-kvm-s"]').on('input change', calculateTotalPrice);
+		$('select[name="select-ROK"], select[name="select-balkong"]').on('change', calculateTotalPrice);
 
 
 		//moving service sidebar data
@@ -353,10 +357,116 @@
 			totalPrice += servicePrice;
 		});
 
-		//For Fönsterputs service total calculation
-		if(getQueryParam('servicename') === 'Fönsterputs'){
-			servicePrice = parseFloat($('.stdn-window-cleaning-rok-fee').text());
-			totalPrice = parseFloat($('.stdn-window-cleaning-rokcheckbox-txt').text().match(/\d+/)[0]);
+		// For Fönsterputs service total calculation (CF7-driven)
+		if (getQueryParam('servicename') === 'Fönsterputs') {
+			var rokMap = {
+				'1 ROK': 500,
+				'2 ROK': 650,
+				'3 ROK': 750,
+				'4 ROK': 900,
+				'5 ROK': 1050,
+				'VILLA': 1600
+			};
+			var balkongMap = {
+				'INGEN BALKONG 0:-': 0,
+				'GLAS RÄCKE 300:-': 300,
+				'HALV INGLASAD BALKONG 350:-': 350,
+				'INGLASAD BALKONG 600:-': 600
+			};
+
+			var rokVal = ($('select[name="select-ROK"]').val() || '').toString().trim();
+			var balkongVal = ($('select[name="select-balkong"]').val() || '').toString().trim();
+
+			var rokPrice = rokMap[rokVal] || 0;
+			var balkongPrice = balkongMap[balkongVal] || 0;
+
+			servicePrice = rokPrice; // show ROK as main fee row
+			$('.stdn-window-cleaning-rok-fee').text(rokPrice + ' :- ');
+			$('.stdn-window-cleaning-rokcheckbox-txt').text(balkongVal ? balkongVal : ' – ');
+
+			totalPrice = rokPrice + balkongPrice;
+			$('.stdn-total-est').text(totalPrice + ' :-');
+			$('.stdn-total-est').show();
+		}
+
+		// Flyttstädning pricing from CF7 kvm field (number-kvm-f)
+		if (getQueryParam('servicename') === 'Flyttstädning') {
+			var kvmVal = parseInt(($('input[name="number-kvm-f"]').val() || '').toString(), 10);
+			if (!isNaN(kvmVal)) {
+				// Map kvm to price per provided ranges
+				var priceTable = [
+					{ min: 0, max: 19, price: 1550 },
+					{ min: 20, max: 29, price: 1650 },
+					{ min: 30, max: 39, price: 1750 },
+					{ min: 40, max: 49, price: 1850 },
+					{ min: 50, max: 59, price: 2050 },
+					{ min: 60, max: 69, price: 2150 },
+					{ min: 70, max: 79, price: 2250 },
+					{ min: 80, max: 89, price: 2350 },
+					{ min: 90, max: 99, price: 2650 },
+					{ min: 100, max: 109, price: 2750 },
+					{ min: 110, max: 119, price: 2850 },
+					{ min: 120, max: 129, price: 2950 },
+					{ min: 130, max: 139, price: 3050 },
+					{ min: 140, max: 149, price: 3150 },
+					{ min: 150, max: 159, price: 3250 }
+				];
+				var matched = priceTable.find(function (r) { return kvmVal >= r.min && kvmVal <= r.max; });
+				if (matched) {
+					servicePrice = matched.price;
+					$('.stdn-service-fee').text(servicePrice);
+					$('.stdn-service-fee').show();
+					$('.stdn-cleaning-freq').show();
+					$('.stdn-total-est').text((servicePrice + 70) + ' :-');
+					$('.stdn-total-est').show();
+					return; // early exit; rest of calc not needed
+				}
+			} else {
+				// hide when invalid/empty
+				$('.stdn-service-fee').hide();
+				$('.stdn-total-est').hide();
+			}
+		}
+
+		// Storstädning pricing from CF7 kvm field (number-kvm-s)
+		if (getQueryParam('servicename') === 'Storstädning') {
+			var kvmValS = parseInt(($('input[name="number-kvm-s"]').val() || '').toString(), 10);
+			if (!isNaN(kvmValS)) {
+				var priceTableS = [
+					{ min: 0, max: 49, price: 2150 },
+					{ min: 50, max: 59, price: 2250 },
+					{ min: 60, max: 69, price: 2350 },
+					{ min: 70, max: 79, price: 2450 },
+					{ min: 80, max: 89, price: 2550 },
+					{ min: 90, max: 99, price: 2750 },
+					{ min: 100, max: 109, price: 2900 },
+					{ min: 110, max: 119, price: 3050 },
+					{ min: 120, max: 129, price: 3200 }
+				];
+				var matchedS = priceTableS.find(function (r) { return kvmValS >= r.min && kvmValS <= r.max; });
+				if (matchedS) {
+					servicePrice = matchedS.price;
+					$('.stdn-service-fee').text(servicePrice);
+					$('.stdn-service-fee').show();
+					$('.stdn-cleaning-freq').show();
+					$('.stdn-total-est').text((servicePrice + 70) + ' :-');
+					$('.stdn-total-est').show();
+					return;
+				}
+			} else {
+				$('.stdn-service-fee').hide();
+				$('.stdn-total-est').hide();
+			}
+		}
+
+		// helper for Hemstädning frequency multiplier from CF7 select-freq
+		function getSelectedFrequencyMultiplier() {
+			var freq = ($('[name="select-freq"]').val() || '').toString().trim();
+			if (freq === 'Varje vecka') return 4;
+			if (freq === 'Varannan vecka') return 2;
+			if (freq === 'Var tredje vecka') return 1;
+			if (freq === 'Var fjärde vecka') return 1;
+			return 1;
 		}
 
 		//home cleaning/ Hemstädning pricing
@@ -365,23 +475,26 @@
 			showPerHourRate()
 
 			function showPerHourRate(){
-				var numericValue = $('#per_hour_cleaning').val().match(/\d+/);
+				var perHourVal = ($('[name="select-kpt"]').val() || '').toString();
+				var numericValue = perHourVal.match(/\d+/);
 				if (numericValue) {
-					$('.stdn-total-est').text(parseFloat(numericValue[0]) * parseFloat($('input[name="hur_ofta_vill_du_ha_hemstädning?"]:checked').data('service-price')) + ' :-/ mån');
+					var multiplier = getSelectedFrequencyMultiplier();
+					$('.stdn-total-est').text(parseFloat(numericValue[0]) * multiplier + ' :-/ mån');
 					$('.stdn-total-est').show();
 					servicePrice = parseFloat(numericValue[0]);
 				}
 			}
 
-			$(document).on('change', '#per_hour_cleaning', function(){
+			$(document).on('change', '[name="select-kpt"]', function(){
 				showPerHourRate()
 			});
 		}
 
 		$('.stdn-service-cost').text(servicePrice);
 		if(getQueryParam('servicename') === 'Hemstädning'){
+			var multiplier = getSelectedFrequencyMultiplier();
 			$('.stdn-total-est').text(
-				servicePrice * parseFloat($('input[name="hur_ofta_vill_du_ha_hemstädning?"]:checked').data('service-price')) + ` :- ${getQueryParam('servicename') === 'Hemstädning' ? '/ mån' : ''}`
+				(servicePrice * multiplier) + ' :-/ mån'
 			);
 		} else {
 			$('.stdn-total-est').text(
@@ -1108,19 +1221,20 @@
 			showPerHourRate()
 
 			function showPerHourRate(){
-				var numericValue = $('#per_hour_cleaning').val().match(/\d+/);
+				var perHourVal = ($('[name="select-kpt"]').val() || '').toString();
+				var numericValue = perHourVal.match(/\d+/);
 				if (numericValue) {
-					// Perform the multiplication and parse both values as floats to ensure accuracy
-					let total = parseFloat(numericValue[0]) * parseFloat($('input[name="hur_ofta_vill_du_ha_hemstädning?"]:checked').data('service-price'));
-
-					// Set the formatted text with currency and unit
+					// Use CF7 frequency select instead of legacy radios
+					var freq = ($('[name="select-freq"]').val() || '').toString().trim();
+					var multiplier = (freq === 'Varje vecka') ? 4 : (freq === 'Varannan vecka') ? 2 : 1;
+					let total = parseFloat(numericValue[0]) * multiplier;
 					$('.stdn-total-est').text(total + ' :-/ mån');
 
 					$('.stdn-total-est').show();
 				}
 			}
 
-			$(document).on('change', '#per_hour_cleaning', function(){
+			$(document).on('change', '[name="select-kpt"]', function(){
 				showPerHourRate()
 			});
 		}
@@ -1250,54 +1364,39 @@
 
 		}
 
-		//Window cleaning service 'Fönsterputs'
-		if (getQueryParam('servicename') === 'Fönsterputs') {
-			$('input[name="vill_du_lägga_till_något_mer?[]"][value="Stege behövs"]').change(function () {
+		//Window cleaning service (legacy handlers removed; CF7-driven now)
 
-				if ($(this).is(':checked')) {
-					if ($('.stdn-window-cleaning-stege').length === 0) {
-						let content = `
-							<div class="stdn-window-cleaning-stege">
-								<h5>Stege</h5>
-								<span class="stdn-window-cleaning-stege-fee">${$(this).data('service-price')}</span>
-							</div>
-						`;
+		//cleaning freq (CF7 only)
+		// sync sammanställning with CF7 select "select-freq"
+		$(document).on('change', '[name="select-freq"]', function () {
+			$('.stdn-selected-cleaning-freq').text($(this).val());
+			calculateTotalPrice();
+		});
+		// initial sync from CF7 select on page load (if present)
+		var initialFreq = $('[name="select-freq"]').val();
+		if (initialFreq) {
+			$('.stdn-selected-cleaning-freq').text(initialFreq);
+		}
+		// remove reliance on #per_hour_cleaning; use CF7 select-kpt instead
+		$(document).on('change', '[name="select-kpt"]', function () {
+			$('.stdn-selected-cleaning-perhour').text($(this).val());
+			calculateTotalPrice();
+		});
 
-						$(content).insertAfter('.stdn-cleaning-freq');
-						$('.stdn-total-est').text(parseInt($(this).data('service-price')) + parseInt($('.stdn-total-est').text().replace(/\s+/g, '')));
-					}
-				} else {
-					$('.stdn-window-cleaning-stege').remove();
-					$('.stdn-total-est').text(parseInt($('.stdn-total-est').text().replace(/\s+/g, '')) - parseInt($(this).data('service-price')));
-				}
-			});
+		// keep sammanställning per-hour in sync with CF7 select "select-kpt"
+		$(document).on('change', '[name="select-kpt"]', function () {
+			var selectedPerHour = $(this).val();
+			$('.stdn-selected-cleaning-perhour').text(selectedPerHour);
+		});
 
-			$('#rok').change(function(){
-				if($(this).val() !== ''){
-					$('.stdn-window-cleaning-rok-fee').text($(this).val() + ' :- ');
-				}
-
-				if($('.stdn-window-cleaning-rokcheckbox-txt').text() === ' – '){
-					$('.stdn-total-est').text($(this).val() + ' :- ');
-				}
-			});
-
-			$('input[name="rokcheckbox"]').change(function(){
-				if ($(this).is(':checked')) {
-					$('.stdn-window-cleaning-rokcheckbox-txt').text($(this).val());
-				}
-			});
+		// initial sync from CF7 select on page load (if present)
+		var initialKpt = $('[name="select-kpt"]').val();
+		if (initialKpt) {
+			$('.stdn-selected-cleaning-perhour').text(initialKpt);
 		}
 
-		//cleaning freq
-		$(document).on('click', 'input[name="hur_ofta_vill_du_ha_hemstädning?"]', function () {
-			$('.stdn-selected-cleaning-freq').text($('input[name="hur_ofta_vill_du_ha_hemstädning?"]:checked').val());
-		});
-		$(document).on('click', '#per_hour_cleaning', function () {
-			$('.stdn-selected-cleaning-perhour').text($('#per_hour_cleaning').val());
-		});
-
 		$('.stdn-booking-calander').appendTo('.stdn-booking-data-wrapper');
+		$('.stdn-booking-calander').show();
 
 		if (window.location.href.indexOf("booking") > -1 && window.location.href.indexOf("moveto") > -1) {
 			// $('#content .page-header .entry-title').text('Flytthjälp');
@@ -1375,7 +1474,7 @@
 					if(rok_checkbox !== '' && typeof rok_checkbox !== 'undefined'){
 						rok_checkbox_val = ' ROK_Checkbox: '+rok_checkbox+' ';
 					}
-					let per_hour_cleaning = $('#per_hour_cleaning').val();
+					let per_hour_cleaning = ($('[name="select-kpt"]').val() || '').toString();
 					let per_hour_cleaning_val = '';
 					if (per_hour_cleaning !== '' && typeof per_hour_cleaning !== 'undefined') {
 						per_hour_cleaning_val = 'Frekvens per timme: '+per_hour_cleaning+' ';

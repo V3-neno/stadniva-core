@@ -66,22 +66,8 @@
 			</div>
 			<?php
 			endif;
-			if ( 'Hemstädning' === $service_name):
+			// Hemstädning per-hour selector removed (using CF7 fields only)
 			?>
-			<div class="stdn-service-name">
-				<label
-					class="stdn-question-title"><?php esc_html_e( 'Frekvens per timme*', 'stadniva-core' ); ?></label>
-			</div>
-			<select class="form-control" name="per_hour_cleaning" required id="per_hour_cleaning">
-				<!-- <option value="">Välj alternativ</option> -->
-				<?php
-				foreach ($meta_data['stdn-option-repeater'] as $item) {
-					echo '<option value="'.$item["stdn-drpdn-option"].'">'.$item["stdn-drpdn-option"].'</option>';
-				}
-				?>
-			</select>
-			<?php
-			endif;
 			?>
 			<?php elseif ( 'Fönsterputs' === $service_name ) : ?>
 			<form id="cleaning-form">
@@ -212,8 +198,7 @@
 
 // 			if ( ! empty( $meta_data['stdn-service-price'] ) ) {
 				?>
-			<button type="button"
-				class="btn btn-secondary stdn-cont-booking"><?php esc_html_e( 'FORTSÄTT', 'stadniva-core' ); ?></button>
+			<!-- Removed continue button: CF7 form loads on page load -->
 			<?php
 // 			}
 
@@ -302,13 +287,11 @@
 
 				<div class="stdn-window-cleaning-rok">
 					<h5>ROK</h5>
-					<span class="stdn-window-cleaning-rok-fee"><?php esc_html_e( ' 450 :- ', 'stadniva-core' ); ?></span>
+					<span class="stdn-window-cleaning-rok-fee"></span>
 				</div>
 
 				<div class="stdn-window-cleaning-rokcheckbox">
-					<!-- <h5>ROK</h5> -->
-					<span
-						class="stdn-window-cleaning-rokcheckbox-txt"><?php esc_html_e( ' - ', 'stadniva-core' ); ?></span>
+					<span class="stdn-window-cleaning-rokcheckbox-txt"> – </span>
 				</div>
 
 				<div class="stdn-service-booking-date-time">
@@ -321,13 +304,7 @@
 					<label><?php esc_html_e( 'Totalt', 'stadniva-core' ); ?></label>
 					<span
 						class="stdn-service-price-info"><?php esc_html_e( 'med rutavdrag', 'stadniva-core' ); ?></span>
-					<span class="stdn-total-est"> 450 :-
-						<?php
-						// if ( isset( $meta_data['stdn-service-price'] ) && ! empty( $meta_data['stdn-service-price'] ) ) {
-						// 	echo esc_html( $meta_data['stdn-service-price'] );
-						// }
-						?>
-					</span>
+					<span class="stdn-total-est"></span>
 				</div>
 				<?php elseif ( 'Storstädning' === $service_name ) : ?>
 				<h4><?php esc_html_e( 'Din bokning', 'stadniva-core' ); ?></h4>
