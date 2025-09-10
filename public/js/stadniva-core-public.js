@@ -569,6 +569,7 @@
 				success: function (response) {
 					if (response && response.success) {
 						$('.stdn-inline-cf7').html(response.data.html);
+						stdnBindCf7ToSummary();
 					}
 				}
 			});
@@ -730,6 +731,7 @@
 											success: function (response) {
 												if (response && response.success) {
 													$('.stdn-inline-cf7').html(response.data.html);
+													stdnBindCf7ToSummary();
 												}
 											}
 										});
@@ -1519,6 +1521,64 @@
 	function getQueryParam(param) {
 		let urlParams = new URLSearchParams(window.location.search);
 		return urlParams.get(param);
+	}
+
+	// Helper: populate CF7 with selected service info and bind summary updates
+	function stdnBindCf7ToSummary() {
+		const $cf7 = $('.stdn-inline-cf7');
+		if ($cf7.length === 0) return;
+
+		// Populate hidden fields and display field
+		let serviceId = $('#selected_service').val();
+		let serviceName = $('#selected_service').find('option:selected').text();
+		$cf7.find('input[name="serviceid"]').val(serviceId);
+		$cf7.find('input[name="servicename"]').val(serviceName);
+		$cf7.find('input[name="servicename-display"]').val(serviceName);
+
+		// Bind Date to summary date
+		$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-285"]').on('change.stdnbind input.stdnbind', 'input[name="date-285"]', function () {
+			const val = $(this).val();
+			if (val) {
+				$('.stdn-booking-date').text(val);
+			}
+		});
+
+		// Bind Time to summary time
+		$cf7.off('change.stdnbind', 'select[name="menu-0"]').on('change.stdnbind', 'select[name="menu-0"]', function () {
+			const val = $(this).val();
+			if (val) {
+				$('.stdn-booking-time').text(val);
+			}
+		});
+
+		// Service-specific mappings
+		// Hemstädning
+		if (serviceName === 'Hemstädning') {
+			$cf7.off('change.stdnbind', 'select[name="select-kpt"]').on('change.stdnbind', 'select[name="select-kpt"]', function () {
+				$('.stdn-selected-cleaning-perhour').text($(this).val());
+			});
+			$cf7.off('change.stdnbind', 'select[name="select-freq"]').on('change.stdnbind', 'select[name="select-freq"]', function () {
+				$('.stdn-selected-cleaning-freq').text($(this).val());
+			});
+		}
+
+		// Fönsterputs
+		if (serviceName === 'Fönsterputs') {
+			$cf7.off('change.stdnbind', 'select[name="select-ROK"]').on('change.stdnbind', 'select[name="select-ROK"]', function () {
+				$('.stdn-window-cleaning-rok-fee').text($(this).val());
+			});
+			$cf7.off('change.stdnbind', 'select[name="select-balkong"]').on('change.stdnbind', 'select[name="select-balkong"]', function () {
+				$('.stdn-window-cleaning-rokcheckbox-txt').text($(this).val());
+			});
+		}
+
+		// Trigger initial sync for prefilled values
+		$cf7.find('input[name="date-285"]').trigger('change');
+		$cf7.find('select[name="menu-0"]').trigger('change');
+		$cf7.find('select[name="select-kpt"]').trigger('change');
+		$cf7.find('select[name="select-freq"]').trigger('change');
+		$cf7.find('select[name="select-ROK"]').trigger('change');
+		$cf7.find('select[name="select-balkong"]').trigger('change');
 	}
 
 })(jQuery);
