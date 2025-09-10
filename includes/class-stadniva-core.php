@@ -191,6 +191,12 @@ class Stadniva_Core {
 		 */
 		$this->loader->add_action( 'wp_ajax_stdn_service_cost_estimation', $plugin_public, 'stdn_service_cost_estimation_handler' );
 		$this->loader->add_action( 'wp_ajax_nopriv_stdn_service_cost_estimation', $plugin_public, 'stdn_service_cost_estimation_handler' );
+
+		/**
+		 * Return CF7 form HTML for selected service (inline render)
+		 */
+		$this->loader->add_action( 'wp_ajax_stdn_get_cf7_form', $plugin_public, 'stdn_get_cf7_form_handler' );
+		$this->loader->add_action( 'wp_ajax_nopriv_stdn_get_cf7_form', $plugin_public, 'stdn_get_cf7_form_handler' );
 	}
 
 	/**

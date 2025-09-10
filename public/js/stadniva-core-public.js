@@ -547,28 +547,31 @@
 
 	//method to open service details in new tab
 	function openServiceDetailPageInNewTab() {
-		// to open service booking details in new tab
-		$(document).on('click', '.stdn-continue-booking', function (e) {
-			e.preventDefault();
+		// Inline render CF7 when service is selected (no redirects)
+		$(document).on('change', '#selected_service', function () {
 			let serviceId = $('#selected_service').val();
-			let serviceName = $('#selected_service').find('option:selected').text();
+			let $selected = $('#selected_service').find('option:selected');
+			let isMovingService = !!$selected.data('moving-service');
 
-			//check if the service is moving service then process postal code to the URL
-			if ($('.stdn-postal-code-wrapper').length >= 2) {
-
-				//check postal code for moving service in popup
-				if ($('.stdn-success-logo').length >= 1 && $('.stdn-moving-service')[1].value != '') {
-					$('.stdn-continue-booking').removeAttr('disabled');
-					window.open(stdn_data.siteUrl + '/booking?serviceid=' + serviceId + '&servicename=' + serviceName + '&nonce=' + stdn_data.nonce + '&moveto=' + $('.stdn-moving-service')[1].value + '', '_blank');
-				} else {
-					alert('Ange ett giltigt postnummer.');
-				}
-			} else if (serviceName === 'Kontorsstädning') {
-				window.open(stdn_data.siteUrl + '/kontorsstadning/', '_self');
-			} else {
-				//if the service is not a moving service
-				window.open(stdn_data.siteUrl + '/booking?serviceid=' + serviceId + '&servicename=' + serviceName + '&nonce=' + stdn_data.nonce + '', '_self');
+			// For moving services, require postal code first
+			if (isMovingService && ($('.stdn-postal-code-wrapper').length < 2 || !($('.stdn-moving-service')[1] && $('.stdn-moving-service')[1].value))) {
+				return; // wait for postal validation
 			}
+
+			$.ajax({
+				type: 'POST',
+				url: stdn_data.ajaxUrl,
+				data: {
+					action: 'stdn_get_cf7_form',
+					serviceId: serviceId,
+					nonce: stdn_data.nonce
+				},
+				success: function (response) {
+					if (response && response.success) {
+						$('.stdn-inline-cf7').html(response.data.html);
+					}
+				}
+			});
 		});
 	}
 
@@ -710,6 +713,27 @@
 
 									$('.stdn-postal-code-result').hide();
 									sessionStorage.setItem('cityName', response.data.city);
+
+									// Inline render CF7 form for moving service after validation
+									let $selected = $('#selected_service').find('option:selected');
+									let isMovingService = !!$selected.data('moving-service');
+									if (isMovingService && $('.stdn-postal-code-wrapper').length >= 2 && $('.stdn-moving-service')[1] && $('.stdn-moving-service')[1].value != '') {
+										let serviceId = $('#selected_service').val();
+										$.ajax({
+											type: 'POST',
+											url: stdn_data.ajaxUrl,
+											data: {
+												action: 'stdn_get_cf7_form',
+												serviceId: serviceId,
+												nonce: stdn_data.nonce
+											},
+											success: function (response) {
+												if (response && response.success) {
+													$('.stdn-inline-cf7').html(response.data.html);
+												}
+											}
+										});
+									}
 								}
 							},
 							error: function (error) {

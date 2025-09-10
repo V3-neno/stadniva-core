@@ -258,10 +258,8 @@ class Stadniva_Core_Public {
 							?>
             </select>
         </div>
-        <div class="modal-footer">
-            <button type="button"
-                class="btn btn-primary stdn-continue-booking"><?php esc_html_e( 'FORTSÄTT', 'stadniva-core' ); ?></button>
-        </div>
+        <div class="stdn-inline-cf7"></div>
+        <div class="modal-footer"></div>
     </div>
 </div>
 <?php
@@ -434,5 +432,27 @@ class Stadniva_Core_Public {
 				wp_send_json_error( $arr );
 			}
 		}
+	}
+
+	/**
+	 * AJAX: Return CF7 form HTML for a service id
+	 */
+	public function stdn_get_cf7_form_handler() {
+		if ( ! isset( $_POST['serviceId'] ) || ! isset( $_POST['nonce'] ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Ogiltig förfrågan.', 'stadniva-core' ) ) );
+		}
+
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'stdn_nonce' ) ) {
+			wp_send_json_error( array( 'message' => esc_html__( 'Nonce verification failed.', 'stadniva-core' ) ) );
+		}
+
+		$service_id = sanitize_text_field( wp_unslash( $_POST['serviceId'] ) );
+		$meta_data  = get_post_meta( $service_id, 'stadniva-core', true );
+		if ( is_array( $meta_data ) && ! empty( $meta_data['stdn-cf7-shortcode'] ) ) {
+			$form_html = do_shortcode( $meta_data['stdn-cf7-shortcode'] );
+			wp_send_json_success( array( 'html' => $form_html ) );
+		}
+
+		wp_send_json_error( array( 'message' => esc_html__( 'Formulär hittades inte.', 'stadniva-core' ) ) );
 	}
 }
