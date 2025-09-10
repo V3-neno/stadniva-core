@@ -68,7 +68,6 @@
 			endif;
 			// Hemstädning per-hour selector removed (using CF7 fields only)
 			?>
-			?>
 			<?php elseif ( 'Fönsterputs' === $service_name ) : ?>
 			<form id="cleaning-form">
 
@@ -215,6 +214,12 @@
 		?>
 	</div>
 
+	<?php
+	// Render Contact Form 7 form if shortcode provided in service meta
+	if ( ! empty( $meta_data['stdn-cf7-shortcode'] ) ) {
+		echo do_shortcode( $meta_data['stdn-cf7-shortcode'] );
+	}
+	?>
 
 	<div class="stadn-booking-parent">
 		<div class="stdn-booking-cost-wrapper">

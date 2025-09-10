@@ -128,6 +128,14 @@ class Stadniva_Core_Admin_Meta extends Stadniva_Core_Meta {
 					'title'   => __( 'Moving service', 'stadniva-core' ),
 					'default' => false,
 				),
+
+				// Contact Form 7 shortcode to render booking form
+				array(
+					'id'    => 'stdn-cf7-shortcode',
+					'type'  => 'text',
+					'title' => __( 'CF7 Shortcode', 'stadniva-core' ),
+					'desc'  => __( 'Paste a Contact Form 7 shortcode, e.g. [contact-form-7 id="123"].', 'stadniva-core' ),
+				),
 			),
 		);
 
