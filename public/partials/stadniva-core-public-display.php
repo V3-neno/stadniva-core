@@ -15,7 +15,7 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="stdn-booking-form-wrapper">
-	<!--<div class="stdn-booking-data-wrapper"> Removed to avoid duplicate forms -->
+	<!--<div class="stdn-booking-data-wrapper">
 		<div class="stdn-booking-data">
 
 			<div class="stdn-service-info-wrapper">
