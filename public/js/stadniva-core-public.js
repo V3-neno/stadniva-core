@@ -1274,11 +1274,11 @@
 		});
 
 
-		// Create a heading element
-		var heading = $('<h4>', {
-			class: 'stdn-booking-pre-heading',
-			text: 'Önskad tid och dag'
-		});
+		// Create a heading element over everything
+		//var heading = $('<h4>', {
+		//	class: 'stdn-booking-pre-heading',
+		//	text: 'Önskad tid och dag'
+		//});
 
 		// Create a <br> element
 		var lineBreak = $('<br>');
