@@ -1545,16 +1545,16 @@
 				$('.stdn-selected-cleaning-freq').text($(this).val());
 			});
 
-			$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-285"]')
-            	.on('change.stdnbind input.stdnbind', 'input[name="date-285"]', function () {
+			$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-288"]')
+            	.on('change.stdnbind input.stdnbind', 'input[name="date-288"]', function () {
                 const val = $(this).val();
                 if (val) {
                     $('.stdn-booking-date').text(val);
                 }
             });
 
-			$cf7.off('change.stdnbind', 'select[name="menu-0"]')
-				.on('change.stdnbind', 'select[name="menu-0"]', function () {
+			$cf7.off('change.stdnbind', 'select[name="menu-3"]')
+				.on('change.stdnbind', 'select[name="menu-3"]', function () {
 					const val = $(this).val();
 					if (val) {
 						$('.stdn-booking-time').text(val);
@@ -1562,11 +1562,11 @@
 				});
 
 			// Initial sync for prefilled values
-			const initialDate = $cf7.find('input[name="date-285"]').val();
+			const initialDate = $cf7.find('input[name="date-288"]').val();
 			if (initialDate) {
 				$('.stdn-booking-date').text(initialDate);
 			}
-			const initialTime = $cf7.find('select[name="menu-0"]').val();
+			const initialTime = $cf7.find('select[name="menu-3"]').val();
 			if (initialTime) {
 				$('.stdn-booking-time').text(initialTime);
 			}
@@ -1611,27 +1611,27 @@
 
 		// Storstädning
 		if (serviceName === 'Storstädning') {
-			$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-285"]')
-				.on('change.stdnbind input.stdnbind', 'input[name="date-285"]', function () {
+			$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-287"]')
+				.on('change.stdnbind input.stdnbind', 'input[name="date-287"]', function () {
 					const val = $(this).val();
 					if (val) {
 						$('.stdn-booking-date').text(val);
 					}
 				});
 
-			$cf7.off('change.stdnbind', 'select[name="menu-0"]')
-				.on('change.stdnbind', 'select[name="menu-0"]', function () {
+			$cf7.off('change.stdnbind', 'select[name="menu-2"]')
+				.on('change.stdnbind', 'select[name="menu-2"]', function () {
 					const val = $(this).val();
 					if (val) {
 						$('.stdn-booking-time').text(val);
 					}
 				});
 
-			const initialDate = $cf7.find('input[name="date-285"]').val();
+			const initialDate = $cf7.find('input[name="date-287"]').val();
 			if (initialDate) {
 				$('.stdn-booking-date').text(initialDate);
 			}
-			const initialTime = $cf7.find('select[name="menu-0"]').val();
+			const initialTime = $cf7.find('select[name="menu-2"]').val();
 			if (initialTime) {
 				$('.stdn-booking-time').text(initialTime);
 			}
@@ -1639,39 +1639,55 @@
 
 		// Flyttstädning
 		if (serviceName === 'Flyttstädning') {
-			$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-285"]')
-				.on('change.stdnbind input.stdnbind', 'input[name="date-285"]', function () {
+			$cf7.off('change.stdnbind input.stdnbind', 'input[name="date-286"]')
+				.on('change.stdnbind input.stdnbind', 'input[name="date-286"]', function () {
 					const val = $(this).val();
 					if (val) {
 						$('.stdn-booking-date').text(val);
 					}
 				});
 
-			$cf7.off('change.stdnbind', 'select[name="menu-0"]')
-				.on('change.stdnbind', 'select[name="menu-0"]', function () {
+			$cf7.off('change.stdnbind', 'select[name="menu-1"]')
+				.on('change.stdnbind', 'select[name="menu-1"]', function () {
 					const val = $(this).val();
 					if (val) {
 						$('.stdn-booking-time').text(val);
 					}
 				});
 
-			const initialDate = $cf7.find('input[name="date-285"]').val();
+			const initialDate = $cf7.find('input[name="date-286"]').val();
 			if (initialDate) {
 				$('.stdn-booking-date').text(initialDate);
 			}
-			const initialTime = $cf7.find('select[name="menu-0"]').val();
+			const initialTime = $cf7.find('select[name="menu-1"]').val();
 			if (initialTime) {
 				$('.stdn-booking-time').text(initialTime);
 			}
 		}
 
 		// Trigger initial sync for prefilled values
-		$cf7.find('input[name="date-285"]').trigger('change');
-		$cf7.find('select[name="menu-0"]').trigger('change');
+		if (serviceName === 'Hemstädning') {
+			$cf7.find('input[name="date-288"]').trigger('change');
+			$cf7.find('select[name="menu-3"]').trigger('change');
+		}
+		if (serviceName === 'Storstädning') {
+			$cf7.find('input[name="date-287"]').trigger('change');
+			$cf7.find('select[name="menu-2"]').trigger('change');
+		}
+		if (serviceName === 'Flyttstädning') {
+			$cf7.find('input[name="date-286"]').trigger('change');
+			$cf7.find('select[name="menu-1"]').trigger('change');
+		}
+		if (serviceName === 'Fönsterputs') {
+			$cf7.find('input[name="date-285"]').trigger('change');
+			$cf7.find('select[name="menu-0"]').trigger('change');
+		}
+
+
 		$cf7.find('select[name="select-kpt"]').trigger('change');
 		$cf7.find('select[name="select-freq"]').trigger('change');
 		$cf7.find('select[name="select-ROK"]').trigger('change');
 		$cf7.find('select[name="select-balkong"]').trigger('change');
-	}
+			}
 
 })(jQuery);
