@@ -15,7 +15,7 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="stdn-booking-form-wrapper">
-	<div class="stdn-booking-data-wrapper">
+	<!--<div class="stdn-booking-data-wrapper"> Removed to avoid duplicate forms -->
 		<div class="stdn-booking-data">
 
 			<div class="stdn-service-info-wrapper">
@@ -195,14 +195,14 @@
 				}
 			}
 
-// 			if ( ! empty( $meta_data['stdn-service-price'] ) ) {
-				?>
-			<!-- Removed continue button: CF7 form loads on page load -->
-			<?php
-// 			}
+			// 			if ( ! empty( $meta_data['stdn-service-price'] ) ) {
+							?>
+						<!-- Removed continue button: CF7 form loads on page load -->
+						<?php
+			// 			}
 
 			?>
-		</div>
+		</div> 
 
 		<?php
 		if ( true == $meta_data['stdn-moving-service'] ) {
