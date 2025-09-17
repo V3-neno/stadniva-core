@@ -15,8 +15,8 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div class="stdn-booking-form-wrapper">
-	<!--<div class="stdn-booking-data-wrapper">
-		<div class="stdn-booking-data">
+	<div class="stdn-booking-data-wrapper"> 
+		<!--<div class="stdn-booking-data">
 
 			<div class="stdn-service-info-wrapper">
 				<?php
@@ -43,7 +43,7 @@
 				?>
 			</div>
 
-			<!-- The Modal -->
+		
 			<div id="extraInfoModal" class="modal" style="display: none;">
 				<div class="modal-content">
 					<span class="close">&times;</span>
@@ -76,7 +76,7 @@
 				</div>
 				<div class="form-group">
 					<select class="form-control" name="rok" required id="rok">
-						<!-- <option value="">Välj alternativ</option> -->
+						<-- <option value="">Välj alternativ</option>
 						<?php
 				foreach ($meta_data['stdn-rok-repeater'] as $item) {
 					echo '<option value="'.$item["stdn-rok-price"].'">'.$item["stdn-rok"].'</option>';
@@ -101,7 +101,7 @@
 				</div>
 			</form>
 			<?php else : ?>
-			<!-- Handle other cases or display a default message -->
+			<-- Handle other cases or display a default message
 			<?php endif; ?>
 
 			<?php
@@ -197,12 +197,12 @@
 
 			// 			if ( ! empty( $meta_data['stdn-service-price'] ) ) {
 							?>
-						<!-- Removed continue button: CF7 form loads on page load -->
+						<-- Removed continue button: CF7 form loads on page load
 						<?php
 			// 			}
 
 			?>
-		</div> 
+		</div> -->
 
 		<?php
 		if ( true == $meta_data['stdn-moving-service'] ) {
