@@ -1666,24 +1666,14 @@
 		}
 
 		// Trigger initial sync for prefilled values
-		if (serviceName === 'Hemstädning') {
 			$cf7.find('input[name="date-288"]').trigger('change');
 			$cf7.find('select[name="menu-3"]').trigger('change');
-		}
-		if (serviceName === 'Storstädning') {
 			$cf7.find('input[name="date-287"]').trigger('change');
 			$cf7.find('select[name="menu-2"]').trigger('change');
-		}
-		if (serviceName === 'Flyttstädning') {
 			$cf7.find('input[name="date-286"]').trigger('change');
 			$cf7.find('select[name="menu-1"]').trigger('change');
-		}
-		if (serviceName === 'Fönsterputs') {
 			$cf7.find('input[name="date-285"]').trigger('change');
 			$cf7.find('select[name="menu-0"]').trigger('change');
-		}
-
-
 		$cf7.find('select[name="select-kpt"]').trigger('change');
 		$cf7.find('select[name="select-freq"]').trigger('change');
 		$cf7.find('select[name="select-ROK"]').trigger('change');
