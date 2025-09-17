@@ -409,7 +409,8 @@
 					{ min: 120, max: 129, price: 2950 },
 					{ min: 130, max: 139, price: 3050 },
 					{ min: 140, max: 149, price: 3150 },
-					{ min: 150, max: 159, price: 3250 }
+					{ min: 150, max: 159, price: 3250 },
+					{ min: 160, price: 3350 } // 160+
 				];
 				var matched = priceTable.find(function (r) { return kvmVal >= r.min && kvmVal <= r.max; });
 				if (matched) {
@@ -441,7 +442,8 @@
 					{ min: 90, max: 99, price: 2750 },
 					{ min: 100, max: 109, price: 2900 },
 					{ min: 110, max: 119, price: 3050 },
-					{ min: 120, max: 129, price: 3200 }
+					{ min: 120, max: 129, price: 3200 },
+					{ min: 130, price: 3350 } // 130+
 				];
 				var matchedS = priceTableS.find(function (r) { return kvmValS >= r.min && kvmValS <= r.max; });
 				if (matchedS) {
@@ -1277,7 +1279,7 @@
 		// Create a heading element
 		var heading = $('<h4>', {
 			class: 'stdn-booking-pre-heading',
-			text: 'Önskad tid och dag'
+			text: 'Information inför din bokning'
 		});
 
 		// Create a <br> element
