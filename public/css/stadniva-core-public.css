@@ -174,7 +174,7 @@ margin-bottom: 15px !important;
 .wpbc_button_light:focus{
 		box-shadow: none !important;
 	border: none !important;
-	outline: none: !important;
+	outline: none !important;
 }
 [type=checkbox], [type=radio] {
     box-sizing: border-box;
@@ -189,8 +189,7 @@ margin-bottom: 15px !important;
 .wpbc_button_light:hover{
 	box-shadow: none !important;
 	border: none !important;
-	outline: none: !important;
-}
+	outline: none !important;
 }
 .form-check input[type=radio], .form-check input[type=checkbox] {
 	accent-color: #0c316e;
@@ -398,7 +397,7 @@ margin-bottom: 20px !important;
 	    display: flex !important;
     align-items: center;
     justify-content: center;
-	border: none !important:
+	border: none !important;
 	
 }
 #cleaning-form .form-group .counter button:hover{
@@ -423,7 +422,7 @@ margin-bottom: 20px !important;
 	border-radius: 8px !important;
 }
  [type="submit"]{
-	width: 100% !Imprtant;
+	width: 100% !Important;
 }
 .elementor-element-1596ea3 .stdn-booking-data .form-check{
     display: flex;
@@ -471,4 +470,14 @@ margin-bottom: 20px !important;
 	.stdn-ajax-response{
 		    font-size: 12px;
 	}
+}
+
+/* Hide all fields and labels inside the non-CF7 form */
+.stdn-booking-data .form-group,
+.stdn-booking-data .stdn-service-name,
+.stdn-booking-data label.stdn-question-title,
+.stdn-booking-data input,
+.stdn-booking-data select,
+.stdn-booking-data textarea {
+    display: none !important;
 }
