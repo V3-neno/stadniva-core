@@ -1551,6 +1551,17 @@
 			}
 		});
 
+
+		// Initial sync on load
+		const initialDate = $cf7.find('input[name="date-285"]').val();
+		if (initialDate) {
+			$('.stdn-booking-date').text(initialDate);
+		}
+		const initialTime = $cf7.find('select[name="menu-0"]').val();
+		if (initialTime) {
+			$('.stdn-booking-time').text(initialTime);
+		}
+
 		// Service-specific mappings
 		// Hemstädning
 		if (serviceName === 'Hemstädning') {
