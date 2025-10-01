@@ -244,7 +244,7 @@
 					<div class="stdn-cleaning-perhour">
 						<h5><?php esc_html_e( 'Frekvens per timme', 'stadniva-core' ); ?></h5>
 						<span
-							class="stdn-selected-cleaning-perhour"><?php esc_html_e( ' Hemstädning Måndag – Onsdag 200:-/ Timmen ', 'stadniva-core' ); ?></span>
+							class="stdn-selected-cleaning-perhour"><?php esc_html_e( ' Hemstädning Måndag – Onsdag 190:-/ Timmen ', 'stadniva-core' ); ?></span>
 					</div>
 
 					<div class="stdn-cleaning-freq">
