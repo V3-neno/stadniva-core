@@ -395,22 +395,22 @@
 			if (!isNaN(kvmVal)) {
 				// Map kvm to price per provided ranges
 				var priceTable = [
-					{ min: 0, max: 19, price: 1550 },
-					{ min: 20, max: 29, price: 1650 },
-					{ min: 30, max: 39, price: 1750 },
-					{ min: 40, max: 49, price: 1850 },
-					{ min: 50, max: 59, price: 2050 },
-					{ min: 60, max: 69, price: 2150 },
-					{ min: 70, max: 79, price: 2250 },
-					{ min: 80, max: 89, price: 2350 },
-					{ min: 90, max: 99, price: 2650 },
-					{ min: 100, max: 109, price: 2750 },
-					{ min: 110, max: 119, price: 2850 },
-					{ min: 120, max: 129, price: 2950 },
-					{ min: 130, max: 139, price: 3050 },
-					{ min: 140, max: 149, price: 3150 },
-					{ min: 150, max: 159, price: 3250 },
-					{ min: 160, price: 3350 } // 160+
+					{ min: 0, max: 19, price: 1600 },
+					{ min: 20, max: 29, price: 1700 },
+					{ min: 30, max: 39, price: 1800 },
+					{ min: 40, max: 49, price: 1900 },
+					{ min: 50, max: 59, price: 2100 },
+					{ min: 60, max: 69, price: 2200 },
+					{ min: 70, max: 79, price: 2300 },
+					{ min: 80, max: 89, price: 2400 },
+					{ min: 90, max: 99, price: 2700 },
+					{ min: 100, max: 109, price: 2800 },
+					{ min: 110, max: 119, price: 2900 },
+					{ min: 120, max: 129, price: 3000 },
+					{ min: 130, max: 139, price: 3100 },
+					{ min: 140, max: 149, price: 3200 },
+					{ min: 150, max: 159, price: 3300 },
+					{ min: 160, price: 3400 } // 160+
 				];
 				var matched = priceTable.find(function (r) { return kvmVal >= r.min && kvmVal <= r.max; });
 				if (matched) {
@@ -434,16 +434,16 @@
 			var kvmValS = parseInt(($('input[name="number-kvm-s"]').val() || '').toString(), 10);
 			if (!isNaN(kvmValS)) {
 				var priceTableS = [
-					{ min: 0, max: 49, price: 2150 },
-					{ min: 50, max: 59, price: 2250 },
-					{ min: 60, max: 69, price: 2350 },
-					{ min: 70, max: 79, price: 2450 },
-					{ min: 80, max: 89, price: 2550 },
-					{ min: 90, max: 99, price: 2750 },
-					{ min: 100, max: 109, price: 2900 },
-					{ min: 110, max: 119, price: 3050 },
-					{ min: 120, max: 129, price: 3200 },
-					{ min: 130, price: 3350 } // 130+
+					{ min: 0, max: 49, price: 2250 },
+					{ min: 50, max: 59, price: 2350 },
+					{ min: 60, max: 69, price: 2450 },
+					{ min: 70, max: 79, price: 2550 },
+					{ min: 80, max: 89, price: 2650 },
+					{ min: 90, max: 99, price: 2850 },
+					{ min: 100, max: 109, price: 3000 },
+					{ min: 110, max: 119, price: 3150 },
+					{ min: 120, max: 129, price: 3300 },
+					{ min: 130, price: 3450 } // 130+
 				];
 				var matchedS = priceTableS.find(function (r) { return kvmValS >= r.min && kvmValS <= r.max; });
 				if (matchedS) {
